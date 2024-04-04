@@ -14,25 +14,25 @@
 \maketitle
 
 \section{Tema de investigación}
-Para este proyecto se propone estudiar la aplicabilidad de bibliotecas de análisis y visualización in-situ en simulaciones sismológicas numéricas.
+ Para este proyecto se propone estudiar la aplicabilidad de bibliotecas de análisis y visualización in-situ en simulaciones sismológicas numéricas.
 \section{Título propuesto}
+Construcción y evaluación de una extensión para una simulación símica numérica que permita el análisis y visualización in-situ.
 \section{Problema a resolver}
 El desarrollo de las supercomputadoras de exaescala ha traido nuevos retos. Por una parte, se ha incrementado el poder computacional disponible para la investigación científica, pero por otro lado no todos los componentes han tenido mejoras al mismo nivel. La introducción de cuellos de botella en los sistemas de entrada y salida (E/S) presenta un desafío para el aprovechamiento de los recursos, en particular a la hora de realizar análisis posteriores, como la creación de visualizaciones. Para atender a este problema se han propuesto distintas soluciones entre las que se encuentra el análisis y la visualización in-situ. \cite{akira_kageyama_approach_2014}
 Las simulaciones sísmicas son de gran interés ya que permiten suplementar los datos históricos para llegar a una mejor toma de decisiones a la hora de tomar decisiones de diseño a la hora de construir infraestructura. La literatura nos habla de seis campos en los que se pueden clasificar los trabajos de simulación sísmica \cite{poursartip_large-scale_2020}. Entre los estudios que hacen uso de simulaciones numéricas, se encunetra AWP-ODC. Esta simulación es escalable y hace uso del método de diferencias finitas. Este software fue extendido con la biblioteca de análisis y visualización in-situ, Catalyst, que está relacionada al software de visualización científica ParaView. Se encontró que la extensión de este software tuvo resultados aceptables de rendimiento (medido en GFLOPS), con respecto a la versión original, con el beneficio adicional de que la visualización se realizó de forma in-situ lo que permitió que la salida del programa fuera 444 veces menor que la del original \cite{mu_-situ_2019}. Este estudio muestra que la utilización de bibliotecas en simulaciones numéricas de sismología tiene resultados promisorios y beneficiosos para la investigación.
 \section{Objetivos}
 \subsection{Objetivo general}
-Construir y evaluar una extensión para una simulación sísmica numérica que permita el análisis y visualización in-situ de la misma.
+Construir y evaluar una extensión usable, eficiente e introespectiva para una simulación sísmica numérica que permita el análisis y visualización in-situ de la misma.
 \subsection{Objetivos específicos}
 \begin{itemize}
-  \item Estudiar las simulaciones sísmicas numéricas para entender su funcionamiento.
   \item Investigar simulaciones en otros dominios que hayan incorporado el análisis in-situ de forma satisfactoria.
-  \item Evaluar las bibliotecas de análisis y visualización in-situ para escoger la que mejor se adecúe a la simulación escogida.
-  \item Implementar una extensión para la simulación utilizando la biblioteca escogida.
+  \item Diseñar una extensión usable, eficiente e introespectiva de análisis y visualización in-situ.
+  \item Implementar una extensión usable, eficiente e introespectiva para la simulación utilizando la biblioteca escogida.
   \item Evaluar, optimizar y validar la extención implementada.
 \end{itemize}
 
 \section{Preguntas de investigación}
-¿Cuáles son las bibliotecas de análisis in-situ que se pueden aplicar a simulaciones sismológicas con el propósito de potenciar la capacidad investigativa en la comprensión de eventos sísmicos?
+¿Cómo desarrollar una extensión usable, eficiente e introespectiva para una simulación sísmica numérica que utilice el análisis y visualización in-situ?
 
 \printbibliography
 
