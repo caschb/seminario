@@ -1,0 +1,47 @@
+\section{Problema a resolver}
+Importancia de la sismología.
+
+Importancia de las simulaciones sísmicas para la sismología.
+
+Avance de las simulaciones sísmicas y las simulaciones numéricas.
+
+Avance de las supercomputadoras hasta llegar a la exaescala (TOP500?)
+
+Alto nivel del análisis y visualización in-situ.
+
+Importancia del análisis y visualización in-situ.
+
+Justificación del estudio.
+
+
+% Las simulaciones sísmicas son de gran importancia, ya que complementan los datos históricos, mejorando así el análisis para la toma de decisiones en diseño e infraestructura. La literatura clasifica estos trabajos en seis campos distintos \cite{poursartip_large-scale_2020}. De interés para nuestro estudio son aquellos que utilizan métodos numéricos y computacionales para el modelado de sísmos, estas se han beneficiado del avance en la computación de alto rendimiento (CAR) y los sistemas de supercomputación. Un ejemplo es AWP-ODC, una simulación escalable que utiliza el método de diferencias finitas. Este software ha sido utilizado para simular sismos de hasta magnitud 8 con una frecuencia de 2 Hz en el sur de California, abarcando un área de 800 km por 400 km en computadoras de petaescala \cite{Cui2010}, capaces de realizar $10^{15}$ operaciones de punto flotante de 64 bits por segundo.\\
+% La llegada de las supercomputadoras de exaescala, capaces de realizar $10^{18}$ operaciones de punto flotante de 64 bits por segundo, presenta nuevos desafíos. Si bien se ha incrementado el poder computacional para la investigación científica, algunos componentes no han evolucionado al mismo ritmo. Los cuellos de botella en los sistemas de entrada y salida (E/S) plantean un desafío para el aprovechamiento de recursos, especialmente en análisis posteriores como la creación de visualizaciones. Para abordar este problema se han propuesto soluciones, como el análisis y la visualización in-situ \cite{akira_kageyama_approach_2014}.\\
+% Un ejemplo es la extensión de la simulación AWP-ODC con la biblioteca de análisis y visualización in-situ, Catalyst. Esta extensión demostró un rendimiento aceptable en comparación con la versión original, con la ventaja adicional de una visualización in-situ, lo que redujo significativamente el tamaño de almacenamiento de la salida del programa \cite{mu_-situ_2019}. Este estudio resalta los resultados prometedores y beneficiosos de utilizar bibliotecas en simulaciones numéricas de sismología para la investigación.\\
+% Otro aspecto beneficioso del análisis y visualización in-situ es la capacidad de dirigir computacionalmente las simulaciones \cite{Grosset2020}. Tradicionalmente, las visualizaciones y métricas de simulación solo estaban disponibles después de que esta haya finalizado o alcanzado un punto de control. Sin embargo, el análisis y visualización in-situ permite que los resultados estén disponibles constantemente durante la simulación, lo que brinda a los investigadores la oportunidad de tomar decisiones anticipadas, como detener la simulación si comienza a divergir o si cambian las condiciones. Este tipo de interacción con las simulaciones se ha utilizado en otros dominios \cite{Yi2014} y sería valioso para las simulaciones sísmicas.\\
+% Para este estudio se busca crear una extensión de una simulación existente que sea utilizable por investigadores en sismología, que tenga un rendimiento razonable y les de la oportunidad de hacer dirección computacional de las simulaciones, validada con escenarios nacionales e internacionales.
+
+\section{Aportes de la investigación}
+Esta investigación tendrá dos aportes principales
+\begin{itemize}
+  \item Una caracterización de simulaciones en otras áreas de la ciencia que hagan uso de bibliotecas de análisis in-situ. Esto será valioso para futuros investigadores que vayan a implementar sistemas similares. 
+  \item La creación de una simulación sísmica que haga uso del análisis y visualización in-situ, lo que permitirá que los investigadores del área puedan tener mayor control sobre la simulación, así como hacer un mejor uso de la infraestructura computacional de exaescala. 
+  \item Una evaluación del rendimiento y utilidad de la herramienta creada que servirá de referencia para la consideración de investigadores que deseen hacer uso de esta. 
+  
+\end{itemize}
+
+\section{Objetivos}
+\subsection{Objetivo general}
+Integrar bibliotecas de análisis y visualización in-situ a una simulación sísmica, de forma que sea útil, eficiente e introespectiva para el investigador.
+\subsection{Objetivos específicos}
+\begin{enumerate}
+  \item Caracterizar simulaciones en otros dominios que hayan incorporado el análisis in-situ. % Explicar que esto terminará en un artículo.
+  \item Extender una simulación sísmica numérica para que utilice el análisis y la visualización in-situ. % Explicar que esto incluye el diseño y mejora del rendimiento del programa.
+  \item Estudiar el rendimiento y validar la utilidad de la simulación extendida. % Explicar que esto incluirá el criterio de expertos en el área.
+\end{enumerate}
+\section{Estructura}
+En el \cref{chap:marco} se dará una explicación de alto nivel de las simulaciones sísmicas y se hablará de algunas que existen, así como la que se escogida para llevar a cabo la investigación. Adicionalmente se explicará el concepto de análisis y visualización in-situ y se darán ejemplos de bibliotecas existentes.
+En el \cref{chap:antecedentes} se hablará de simulaciones sísmicas que hayan hecho uso del análisis in-situ y la forma en que nuestra propuesta difiere de estas, y en el \cref{chap:metodologia} se hará una exposición de la metodología que se utilizará para llevar a cabo la investigación.
+
+% \section{Preguntas de investigación}
+% ¿Cómo desarrollar una extensión usable, eficiente e introespectiva para una simulación sísmica numérica que utilice el análisis y visualización in-situ?
+
