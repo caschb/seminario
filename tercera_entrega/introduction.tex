@@ -4,11 +4,11 @@ Los sismos son fenómenos con los que interactuamos con bastante frecuencia. Cad
 
 En la ciencia, el uso de simulaciones permite comparar modelos con datos observados, esto sirve para evaluar los ámbitos en los que el modelo puede ser o no válido. En la sismología, existen métodos de simulación clásicos como lo es la teoría de rayos y las soluciones modales, que siguen siendo útiles e importantes debido a que son menos costosas computacionalmente. Gracias al avance en hardware y software, se ha hecho posible la aplicación de métodos numéricos que permiten el cálculo de sismogramas sintéticos y la resolución de problemas tridimensionales \cite[1-2]{Igel2016}. Las simulaciones en sismología son de gran importancia, ya que complementan los datos históricos y esto ayuda a la investigación, y a la toma de decisiones en áreas como lo es el diseño y la infraestructura. Un ejemplo de simulación es AWP-ODC, esta simulación hace uso del método numérico de diferencias finitas para resolver las ecuaciones diferenciales del modelo. Este software fue utilizado en el 2010 para simular sismos de magnitud 8 con una frecuencia de 2 Hz en el sur de California, abarcando un área de 800 km por 400 km en computadoras de petaescala \cite{Cui2010}, capaces de realizar $10^{15}$ operaciones de punto flotante de 64 bits por segundo (FLOPS).
 
-El TOP500 es el listado de las supercomputadoras más poderosas en el mundo, este se actualiza de manera semestral desde 1993. En la \cref{fig:top500} podemos ver el rendimiento en FLOPS de la computadora número 1 en cada listado desde 1993 hasta el 2024. En el 2008, la supercomputadora RoadRunner se convirtió en la primer computadora de petaescala, desde entonces se notaba que las unidades de entrada/salida (E/S) no estaban avanzando tan rápido como las unidades de procesamiento, por lo que podrían convertirse en cuellos de botella \cite{Narayan2009}. Ya desde el 2007 el departamento de energía de los Estados Unidos (DoE) se empezó a preparar para el desarrollo de las supercomputadoras de exaescala, montando talleres para identificar los beneficios y retos que iban a traer, como lo es la E/S y los requerimientos energéticos del mantenimiento y uso de estos sistemas \cite{Messina2017}. Se han propuesto múltiples soluciones al problema de la E/S, como lo es la E/S paralela \cite{Byna2022} o el análisis y visualización in-situ \cite{akira_kageyama_approach_2014}.
+El TOP500 es el listado de las supercomputadoras más poderosas en el mundo, este se actualiza de manera semestral desde 1993. En la \cref{fig:top500} podemos ver el rendimiento en FLOPS de la computadora número 1 en cada listado desde 1993 hasta el 2024 \cite{top500}. En el 2008, la supercomputadora RoadRunner se convirtió en la primer computadora de petaescala, desde entonces se notaba que las unidades de entrada/salida (E/S) no estaban avanzando tan rápido como las unidades de procesamiento, por lo que podrían convertirse en cuellos de botella \cite{Narayan2009}. Ya desde el 2007 el departamento de energía de los Estados Unidos (DoE) se empezó a preparar para el desarrollo de las supercomputadoras de exaescala, montando talleres para identificar los beneficios y retos que iban a traer, como lo es la E/S y los requerimientos energéticos del mantenimiento y uso de estos sistemas \cite{Messina2017}. Se han propuesto múltiples soluciones al problema de la E/S, como lo es la E/S paralela \cite{Byna2022} o el análisis y visualización in-situ \cite{akira_kageyama_approach_2014}.
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{top500}
-  \caption{Evolución del rendimiento de las supercomputadoras según el TOP500\cite{top500}}
+  \caption{Evolución del rendimiento de las supercomputadoras según el TOP500}
   \label{fig:top500}
 \end{figure}
 
@@ -27,7 +27,7 @@ Esta investigación tendrá tres aportes principales
 
 \section{Objetivos}
 \subsection{Objetivo general}
-Integrar bibliotecas de análisis y visualización in-situ a una simulación sísmica, de forma que sea útil, eficiente e introspectiva para el investigador.
+Modificar una simulación sísmica para que haga uso del análisis y visualización in-situ, basado en la caracterización de simulaciones en otros dominios de forma que sea útil, eficiente e introspectiva para el investigador.
 \subsection{Objetivos específicos}
 \begin{enumerate}
   \item Caracterizar simulaciones en otros dominios que hayan incorporado el análisis in-situ. % Explicar que esto terminará en un artículo.
