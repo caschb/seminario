@@ -1,0 +1,60 @@
+\colorbox{yellow}{TODO: sección que hable sobre conceptos de HPC}
+% \section{Conceptos de computación de alto rendimiento}
+% \subsection{Escalamiento fuerte}
+% \subsection{Escalamiento débil}
+\section{Simulaciones sísmicas}
+% Ecuaciones de onda
+% Ondas P
+% Ondas S
+\subsection{Tipos de métodos numéricos utilizados en simulaciones sísmicas}
+\colorbox{yellow}{TODO: Explicar el problema matemático de fondo.}
+\subsubsection{Método de diferencias finitas}
+Este método es uno de los más estudiados y utilizados para la simulación de la propagación de ondas sísmicas. Hace uso del mallado escalonado, donde ciertas variables como el desplazamiento y el estrés del material están definidas en distintos puntos de la malla lo que reduce el espaciado de esta. Se utiliza para el estudio del movimiento del suelo en zonas altamente pobladas, así como la propagación de las ondas a través de medios arbitrarios \cite{Fichtner2011}.
+\subsubsection{Método de elemento finito estocástico espectral}
+Este método fue originalmente desarrollado para el estudio de la dinámica de fluidos. En sismología se utiliza para resolver la ecuación de onda sísmica en 3D para modelos heteorgéneos de la tierra. Permite el uso de un mallado irregular para poder adaptarse a la topología irregular de la superfície, así como a las longitudes de onda variables del interior de la tierra \cite{Fichtner2011}.
+\subsubsection{Método de Galerkin discontinuo}
+  Es un método relativamente reciente, que funciona como un método de elemento finito donde las restricciones de continuidad entre elementos se substituyen por flujos numéricos, lo que permite que existan soluciones con discontinuidades entre elementos adyacentes \cite{Fichtner2011}.
+\subsection{Simulaciones sísmicas existentes}
+\subsubsection{SPECFEM}
+SPECFEM \cite{Peter_Forward_and_adjoint_2011} es una familia de simulaciones sísmicas que hacen uso del método finito estocástico espectral para realizar simulaciones de propagación de ondas sísmicas a distintas escalas. Está mayormente desarrollado en FORTRAN, con una versión en C++.
+Las simulaciones que forman parte de esta familia son:
+\begin{itemize}
+  \item \textbf{SPECFEM2D}: Permite realizar simulaciones de propagación de ondas acústicas y elásticas en 2 dimensiones.
+  \item \textbf{SPECFEM3D\_Cartesian}: Permite realizar simulaciones de propagación de ondas sísmicas en escalas locales o regionales y realizar la tomología correspondiente.
+  \item \textbf{SPECFEM3D\_GLOBE}: Similar al punto aterior, este software permite la simulación de ondas sísmicas, pero en este caso a escala global o continental. La diferencia entre uno y otro está en el mallado que se puede utilizar, así como las optimizaciones que se realizan.
+  \item \textbf{SPECFEM++}: Esta es una versión de los softwares anteriores desarrollada en C++. \end{itemize}
+\subsubsection{SeisSol}
+SeisSol \cite{Kser2010} permite la simulación de la propagación de ondas sísmicas y de rupturas dinámicas utilizando un método de Galerkin discontinuo. El método de mallado que utiliza esta simulación le permite adaptarse a materiales áltamente híbridos. En el artículo que presenta este software, se demuestra que el software logra escalar satisfactoriamente hasta los 1024 núcleos, con una eficiencia del 76\%. Se utilizó para realizar la simulación de ruptura dinámica más larga y grande en el 2017 con una simulación del terremoto del océano Índico del 2004 \cite{Uphoff2017}. El software está implementado en C++.
+
+\subsubsection{ExaHyPE}
+  Esta simulación también se basa en el método de Galerkin discontinuo \cite{Reinarz2020}. Permite realizar un mallado adaptativo. Se puede utilizar para modelar todo tipo de ecuaciones diferenciales parciales hiperbólicas, no únicamente aquellas relacionadas a la sismología. Se realizaron pruebas de escalamiento, hasta llegar a los 28 nodos con un total de 784 núcleos. El software está escrito en C++ con porciones en FORTRAN y Python.
+\subsubsection{AWP-ODC}
+AWP-ODC hace uso de un método de diferencias finitas \cite{Cui2010}. Permite realizar simulaciones de propagación de ondas sísmicas, así como el modelado de rupturas dinámicas en fallas verticales. Este software intenta resolver el problema de la E/S utilizando MPI-IO para realizar entrada y salida paralela.
+
+
+\colorbox{yellow}{TODO: cuadro resumen de las simulaciones}
+
+\colorbox{yellow}{TODO: mencionar y justificar la simulación seleccionada}
+\section{Análisis in-situ}
+En este trabajo, se utilizarán los términos ``análisis in-situ'' y ``visualización in-situ'' para referirse al análisis y simulación que se realiza de forma simultánea a la ejecución de la simulación que genera los datos, independientemente de si este análisis se realiza en el mismo hardware que la simulación o si este se transporta hacia un hardware dedicado a realizar estas tareas \cite{childs_terminology_2020}.
+\colorbox{yellow}{TODO: diagrama que explique simulación in-situ}
+\subsection{Caracterización de bibliotecas de análisis in-situ}
+Se han identificado seis características con las que se caracterizan las bibliotecas de visualización y análisis in-situ \cite{childs_terminology_2020}.
+\begin{enumerate}
+  \item Tipo de integración con la simulación.
+  \item Proximidad del código de análisis y visualización de la simulación.
+  \item El acceso de las bibliotecas a los punteros de los datos.
+  \item La forma en la que se divide el tiempo o espacio de Ejecución.
+  \item Controles que se tienen sobre la simulación mientras se ejecuta.
+  \item Tipo de salida.
+\end{enumerate}
+\subsection{Bibliotecas de análisis y visualización in-situ}
+\subsubsection{ADIOS2}
+Esta biblioteca le permite al usuario realizar transferencias de datos entre unidades de ejecución de forma transparente, ya sea que es entre dos nodos de una supercomputadora conectadas por algún interconnect o entre computadoras regulares conectadas por red \cite{Godoy2020}.
+\subsubsection{Catalyst}
+Es una herramienta desarrollada por Kitware como un acompañante al software Paraview. Permite instrumentar el código mediante la implementación de un estándar llamado Conduit \cite{Ayachit2021}.
+
+
+\colorbox{yellow}{TODO: Hablar específicamente de conduit, ParaView y VisIT}
+
+\colorbox{yellow}{TODO: Relacionar las bibliotecas con la caracterización}
