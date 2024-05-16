@@ -50,8 +50,13 @@ Se han identificado seis características con las que se caracterizan las biblio
 \end{enumerate}
 \subsection{Bibliotecas de análisis y visualización in-situ}
 \subsubsection{ADIOS2}
-  Esta biblioteca \cite{Godoy2020} le permite al usuario realizar transferencias de datos entre unidades de ejecución de forma transparente, ya sea que es entre dos nodos de una supercomputadora conectadas por algúna red de interconexión como Infiniband, entre computadoras regulares conectadas por internet e incluso entre computadoras regulares y una supercomputadora.
-  Está diseñada para abstraer los movimientos 
+  Esta biblioteca \cite{Godoy2020} le permite al usuario realizar transferencias de datos entre unidades de ejecución de forma transparente, ya sea que es entre dos nodos de una supercomputadora conectadas por alguna red de interconexión como Infiniband, entre computadoras regulares conectadas por internet e incluso entre computadoras regulares y supercomputadoras.
+  Tiene tres APIs diseñadas con distintos niveles de abstracción.
+  \begin{itemize}
+    \item El API de alto nivel está pensado para flujos de trabajo de análisis de datos. Tiene bindings para C++, Python y Matlab.
+    \item El API de bajo nivel está diseñado para ser integrado en simulaciones de HPC. Está basado en MPI para reducir los costos de comunicación de red.
+    \item El API privado permite desarrollar ADIOS con prácticas modernas de ingeniería de software.
+  \end{itemize}
 \subsubsection{Catalyst}
 Es una herramienta desarrollada por Kitware como un acompañante al software Paraview. Permite instrumentar el código mediante la implementación de un estándar llamado Conduit \cite{Ayachit2021}.
 
