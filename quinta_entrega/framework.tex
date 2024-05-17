@@ -1,5 +1,54 @@
-\colorbox{yellow}{TODO: sección que hable sobre conceptos de HPC}
-% \section{Conceptos de computación de alto rendimiento}
+\section{Computación de alto rendimiento}
+La computación de alto rendimiento, o HPC por sus siglas en inglés, hace uso de conocimientos de distintas áreas de la ciencia y la computación para hacer uso de computadoras y clústers de computadoras de forma eficiente. Se ha dicho que informalmente el HPC es un área científica y técnica que estudia las supercomputadoras \cite{Nielsen2016}. Este trabajo es parte busca aplicar el HPC a un problema científico por lo que es necesario tener claro algunos conceptos.
+\subsection{Conceptos básicos}
+\subsubsection{Rendimiento}
+Definimos rendimiento (o performance en inglés) como el recíproco del tiempo de ejecución de un programa \cite{Hennessy2017-ml}. Esto se puede expresar matemáticamente en la ecuación \ref{eq:performance}.
+\begin{equation}
+p_{a} = \frac{1}{t_a}
+\label{eq:performance}
+\end{equation}
+Cuando comparamos dos implementaciones de un programa podemos hacerlo con sus rendimientos o sus tiempos de ejecución. Podemos expresar que un programa $a$ es $n$ veces más rápido que un programa $b$ con las ecuaciones \ref{eq:comparison}.
+
+\begin{align}
+  \begin{split}
+  \frac{p_a}{p_b} = n\\
+  \frac{t_b}{t_a} = n
+  \end{split}
+\label{eq:comparison}
+\end{align}
+
+\subsubsection{Speedup}
+El speedup es la razón entre el rendimiento de un programa que ha sido mejorado y el mismo programa antes de la mejoría \cite{Hennessy2017-ml}. Esta mejoría puede ser un cambio en el programa en sí, o en los recursos computacionales que tiene disponibles.
+En HPC nos interesa medir el speedup de un programa a distintas cantidades de nodos en una supercomputadora específica. El speedup $s$ de un programa utilizando $n$ nodos de computación está dado por la ecuación \ref{eq:speedup}
+\begin{equation}
+  s_n = \frac{p_n}{p_1}
+  \label{eq:speedup}
+\end{equation}
+\subsubsection{Ley de Amdahl}
+La ley de Amdahl se refiere a la observación hecha por Gene Amdahl de que todos los programas están conformados por una fracción que se ejecuta de forma serial ($r_s$) y otra que se puede ejecutar de forma paralela ($r_p$) \cite{amdahl1967}. A esta fracción serial le llamamos overhead. El tiempo de un programa que se ejecuta con un sólo procesador sería entonces:
+$$t_1 = t_s + t_p = 1$$
+Y lo definimos como 1 para facilitar los cálculos.
+Si ejecutamos el programa con $N$ procesadores el tiempo sería ahora:
+$$t_N = t_s + \frac{t_p}{N}$$
+Utilizando la ecuación \ref{eq:speedup} el speedup sería:
+\begin{equation}
+s_N = \frac{1}{t_s + \frac{t_p}{N}}
+ \label{eq:amdahl} 
+\end{equation}
+La ecuación \ref{eq:amdahl} es lo que conocemos como la ley de Amdahl. Tomando el límite de esta ecuación observamos lo siguiente:
+$$\lim_{N\to\infty} \frac{1}{t_s + \frac{t_p}{N}} = \frac{1}{t_s}$$
+El speedup está acotado por el overhead del programa.
+\subsubsection{Ley de Gustafson-Barsis}
+Gustafson y Barsis observaron que la ley de Amdahl tiene una suposición implícita, el tamaño del problema de entrada del programa se mantiene fijo con respecto a la cantidad de recursos computacionales disponibles \cite{Gustafson1988}. De acuerdo a su experiencia trabajando en el Laboratorio Nacional Sandia en EEUU esto no es una suposición realista, el tamaño de los problemas que los investigadores resuelven está relacionado con la cantidad de recursos que tienen disponibles. Adicionalmente los autores notaron que el overhead del programa era aproximadamente independiente del tamaño del problema. Los autores entonces proponen que el tiempo de ejecución de un programa paralelo con $N$ nodos está dado por:
+$$t_N = t_s + t_p = 1$$
+Y lo definimos como 1 para facilitar los cálculos.
+Como una aproximación, los autores dicen entonces que el tiempo de ejecución del mismo programa de forma serial sería:
+$$t_1 = t_s + t_p\times N$$
+Por lo que el speedup sería:
+\begin{equation}
+  s = t_s + t_p\times N
+  \label{eq:gustafson}
+\end{equation}
 % \subsection{Escalamiento fuerte}
 % \subsection{Escalamiento débil}
 \section{Simulaciones sísmicas}
@@ -11,7 +60,7 @@
 \subsubsection{Método de diferencias finitas}
 Este método es uno de los más estudiados y utilizados para la simulación de la propagación de ondas sísmicas. Hace uso del mallado escalonado, donde ciertas variables como el desplazamiento y el estrés del material están definidas en distintos puntos de la malla lo que reduce el espaciado de esta. Se utiliza para el estudio del movimiento del suelo en zonas altamente pobladas, así como la propagación de las ondas a través de medios arbitrarios \cite{Fichtner2011}.
 \subsubsection{Método de elemento finito estocástico espectral}
-Este método fue originalmente desarrollado para el estudio de la dinámica de fluidos. En sismología se utiliza para resolver la ecuación de onda sísmica en 3D para modelos heteorgéneos de la tierra. Permite el uso de un mallado irregular para poder adaptarse a la topología irregular de la superfície, así como a las longitudes de onda variables del interior de la tierra \cite{Fichtner2011}.
+Este método fue originalmente desarrollado para el estudio de la dinámica de fluidos. En sismología se utiliza para resolver la ecuación de onda sísmica en 3D para modelos heterogéneos de la tierra. Permite el uso de un mallado irregular para poder adaptarse a la topología irregular de la superficie, así como a las longitudes de onda variables del interior de la tierra \cite{Fichtner2011}.
 \subsubsection{Método de Galerkin discontinuo}
   Es un método relativamente reciente, que funciona como un método de elemento finito donde las restricciones de continuidad entre elementos se substituyen por flujos numéricos, lo que permite que existan soluciones con discontinuidades entre elementos adyacentes \cite{Fichtner2011}.
 \subsection{Simulaciones sísmicas existentes}
@@ -21,10 +70,10 @@ Las simulaciones que forman parte de esta familia son:
 \begin{itemize}
   \item \textbf{SPECFEM2D}: Permite realizar simulaciones de propagación de ondas acústicas y elásticas en 2 dimensiones.
   \item \textbf{SPECFEM3D\_Cartesian}: Permite realizar simulaciones de propagación de ondas sísmicas en escalas locales o regionales y realizar la tomología correspondiente.
-  \item \textbf{SPECFEM3D\_GLOBE}: Similar al punto aterior, este software permite la simulación de ondas sísmicas, pero en este caso a escala global o continental. La diferencia entre uno y otro está en el mallado que se puede utilizar, así como las optimizaciones que se realizan.
+  \item \textbf{SPECFEM3D\_GLOBE}: Similar al punto anterior, este software permite la simulación de ondas sísmicas, pero en este caso a escala global o continental. La diferencia entre uno y otro está en el mallado que se puede utilizar, así como las optimizaciones que se realizan.
   \item \textbf{SPECFEM++}: Esta es una versión de los softwares anteriores desarrollada en C++. \end{itemize}
 \subsubsection{SeisSol}
-SeisSol \cite{Kser2010} permite la simulación de la propagación de ondas sísmicas y de rupturas dinámicas utilizando un método de Galerkin discontinuo. El método de mallado que utiliza esta simulación le permite adaptarse a materiales áltamente híbridos. En el artículo que presenta este software, se demuestra que el software logra escalar satisfactoriamente hasta los 1024 núcleos, con una eficiencia del 76\%. Se utilizó para realizar la simulación de ruptura dinámica más larga y grande en el 2017 con una simulación del terremoto del océano Índico del 2004 \cite{Uphoff2017}. El software está implementado en C++.
+SeisSol \cite{Kser2010} permite la simulación de la propagación de ondas sísmicas y de rupturas dinámicas utilizando un método de Galerkin discontinuo. El método de mallado que utiliza esta simulación le permite adaptarse a materiales altamente híbridos. En el artículo que presenta este software, se demuestra que el software logra escalar satisfactoriamente hasta los 1024 núcleos, con una eficiencia del 76\%. Se utilizó para realizar la simulación de ruptura dinámica más larga y grande en el 2017 con una simulación del terremoto del océano Índico del 2004 \cite{Uphoff2017}. El software está implementado en C++.
 
 \subsubsection{ExaHyPE}
   Esta simulación también se basa en el método de Galerkin discontinuo \cite{Reinarz2020}. Permite realizar un mallado adaptativo. Se puede utilizar para modelar todo tipo de ecuaciones diferenciales parciales hiperbólicas, no únicamente aquellas relacionadas a la sismología. Se realizaron pruebas de escalamiento, hasta llegar a los 28 nodos con un total de 784 núcleos. El software está escrito en C++ con porciones en FORTRAN y Python.
