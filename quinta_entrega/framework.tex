@@ -7,27 +7,24 @@ Definimos rendimiento (o performance en inglés) como el recíproco del tiempo d
 p_{a} = \frac{1}{t_a}
 \label{eq:performance}
 \end{equation}
-Cuando comparamos dos implementaciones de un programa podemos hacerlo con sus rendimientos o sus tiempos de ejecución. Podemos expresar que un programa $a$ es $n$ veces más rápido que un programa $b$ con las ecuaciones \ref{eq:comparison}.
+Cuando comparamos dos implementaciones de un programa podemos hacerlo con sus rendimientos o sus tiempos de ejecución. Podemos expresar que un programa $a$ es $n$ veces más rápido que un programa $b$ con las ecuación \ref{eq:comparison}.
 
-\begin{align}
-  \begin{split}
-  \frac{p_a}{p_b} = n\\
-  \frac{t_b}{t_a} = n
-  \end{split}
-\label{eq:comparison}
-\end{align}
+\begin{equation}
+  n = \frac{p_a}{p_b} = \frac{t_b}{t_a}
+  \label{eq:comparison}
+\end{equation}
 
 \subsubsection{Speedup}
 El speedup es la razón entre el rendimiento de un programa que ha sido mejorado y el mismo programa antes de la mejoría \cite{Hennessy2017-ml}. Esta mejoría puede ser un cambio en el programa en sí, o en los recursos computacionales que tiene disponibles.
 En HPC nos interesa medir el speedup de un programa a distintas cantidades de nodos en una supercomputadora específica. El speedup $s$ de un programa utilizando $n$ nodos de computación está dado por la ecuación \ref{eq:speedup}
 \begin{equation}
-  s_n = \frac{p_n}{p_1}
+  s_n = \frac{t_1}{t_n} = \frac{p_n}{p_1}
   \label{eq:speedup}
 \end{equation}
 \subsubsection{Ley de Amdahl}
 La ley de Amdahl se refiere a la observación hecha por Gene Amdahl de que todos los programas están conformados por una fracción que se ejecuta de forma serial ($r_s$) y otra que se puede ejecutar de forma paralela ($r_p$) \cite{amdahl1967}. A esta fracción serial le llamamos overhead. El tiempo de un programa que se ejecuta con un sólo procesador sería entonces:
 $$t_1 = t_s + t_p = 1$$
-Y lo definimos como 1 para facilitar los cálculos.
+Donde $t_p$ se refiere al tiempo que le programa dura en la fracción que se puede paralelizar, $t_s$ el tiempo que dura en la fracción serial y lo definimos como 1 para facilitar los cálculos posteriores.
 Si ejecutamos el programa con $N$ procesadores el tiempo sería ahora:
 $$t_N = t_s + \frac{t_p}{N}$$
 Utilizando la ecuación \ref{eq:speedup} el speedup sería:
@@ -40,17 +37,23 @@ $$\lim_{N\to\infty} \frac{1}{t_s + \frac{t_p}{N}} = \frac{1}{t_s}$$
 El speedup está acotado por el overhead del programa.
 \subsubsection{Ley de Gustafson-Barsis}
 Gustafson y Barsis observaron que la ley de Amdahl tiene una suposición implícita, el tamaño del problema de entrada del programa se mantiene fijo con respecto a la cantidad de recursos computacionales disponibles \cite{Gustafson1988}. De acuerdo a su experiencia trabajando en el Laboratorio Nacional Sandia en EEUU esto no es una suposición realista, el tamaño de los problemas que los investigadores resuelven está relacionado con la cantidad de recursos que tienen disponibles. Adicionalmente los autores notaron que el overhead del programa era aproximadamente independiente del tamaño del problema. Los autores entonces proponen que el tiempo de ejecución de un programa paralelo con $N$ nodos está dado por:
-$$t_N = t_s + t_p = 1$$
-Y lo definimos como 1 para facilitar los cálculos.
-Como una aproximación, los autores dicen entonces que el tiempo de ejecución del mismo programa de forma serial sería:
-$$t_1 = t_s + t_p\times N$$
+$$t_N = t_s + t_{p_n} = 1$$
+Aquí de nuevo $t_s$ es el tiempo que el programa invierte en la fracción secuencial, pero $t_{p_n}$ se refiere al tiempo que el programa pasa en la fracción paralela del programa con una carga de trabajo distribuida. Definimos la ecuación como 1 para facilitar los cálculos.
+De aquí tenemos que el tiempo de ejecución del mismo programa con la misma carga de trabajo de forma serial sería:
+$$t_1 = t_s + t_{p_n}\times N$$
 Por lo que el speedup sería:
 \begin{equation}
-  s = t_s + t_p\times N
+  s = \frac{t_1}{t_N} = t_s + t_{p_n}\times N
   \label{eq:gustafson}
 \end{equation}
-% \subsection{Escalamiento fuerte}
-% \subsection{Escalamiento débil}
+
+La ecuación \ref{eq:gustafson} se conoce como la ley de Gustafson-Barsis. Es importante recalcar que la ley de Amdahl y la ley de Gustafson-Barsis miden el speedup de dos situaciones distintas, por una parte la ley de Amdahl supone que el programa tiene una carga de trabajo constante y simplemente se le están dando más recursos de ejecución, mientras que la ley de Gustafson-Baris supone que la carga de trabajo crece con la cantidad de recursos disponibles.
+\subsubsection{Escalabilidad}
+La escalabilidad se refiere a la capacidad de los programas de 
+\subsubsection{Escalamiento fuerte}
+El escalamiento fuerte se refiere a la 
+\subsubsection{Escalamiento débil}
+B
 \section{Simulaciones sísmicas}
 % Ecuaciones de onda
 % Ondas P
