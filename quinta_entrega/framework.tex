@@ -1,10 +1,11 @@
+En este capítulo se expondrán los conceptos más importantes para la propuesta. Hablaremos sobre conceptos de la computación de alto rendimiento que se utilizarán para poder evaluar el trabajo realizado de forma cuantitativa. Luego se continuará con conceptos de las simulaciones sísmicas, esto ayudará para entender las estructuras de datos utilizadas en estas y por lo tanto la forma en que estas se tienen que comunicar ya sea en memoria o a través de la red. Finalmente, se hablará sobre el análisis y simulación in-situ, se mostrará los ejes en los que se caracterizan las bibliotecas y se expondrán las principales.
 \section{Computación de alto rendimiento}
 La computación de alto rendimiento, o HPC por sus siglas en inglés, hace uso de conocimientos de distintas áreas de la ciencia y la computación para hacer uso de computadoras y clústers de computadoras de forma eficiente. Se ha dicho que informalmente el HPC es un área científica y técnica que estudia las supercomputadoras \cite{Nielsen2016}. Este trabajo es parte busca aplicar el HPC a un problema científico por lo que es necesario tener claro algunos conceptos.
 \subsection{Rendimiento}
 Definimos rendimiento (o performance en inglés) como el recíproco del tiempo de ejecución de un programa \cite{Hennessy2017-ml}. Esto se puede expresar matemáticamente en la ecuación \ref{eq:performance}.
 \begin{equation}
-p_{a} = \frac{1}{t_a}
-\label{eq:performance}
+  p_{a} = \frac{1}{t_a}
+  \label{eq:performance}
 \end{equation}
 Cuando comparamos dos implementaciones de un programa podemos hacerlo con sus rendimientos o sus tiempos de ejecución. Podemos expresar que un programa $a$ es $n$ veces más rápido que un programa $b$ con las ecuación \ref{eq:comparison}.
 
@@ -28,8 +29,8 @@ Si ejecutamos el programa con $N$ procesadores el tiempo sería ahora:
 $$t_N = t_s + \frac{t_p}{N}$$
 Utilizando la ecuación \ref{eq:speedup} el speedup sería:
 \begin{equation}
-s_N = \frac{1}{t_s + \frac{t_p}{N}}
- \label{eq:amdahl} 
+  s_N = \frac{1}{t_s + \frac{t_p}{N}}
+  \label{eq:amdahl}
 \end{equation}
 La ecuación \ref{eq:amdahl} es lo que conocemos como la ley de Amdahl. Tomando el límite de esta ecuación observamos lo siguiente:
 $$\lim_{N\to\infty} \frac{1}{t_s + \frac{t_p}{N}} = \frac{1}{t_s}$$
@@ -64,7 +65,7 @@ Este método es uno de los más estudiados y utilizados para la simulación de l
 \subsubsection{Método de elemento finito estocástico espectral}
 Este método fue originalmente desarrollado para el estudio de la dinámica de fluidos. En sismología se utiliza para resolver la ecuación de onda sísmica en 3D para modelos heterogéneos de la tierra. Permite el uso de un mallado irregular para poder adaptarse a la topología irregular de la superficie, así como a las longitudes de onda variables del interior de la tierra \cite{Fichtner2011}.
 \subsubsection{Método de Galerkin discontinuo}
-  Es un método relativamente reciente, que funciona como un método de elemento finito donde las restricciones de continuidad entre elementos se substituyen por flujos numéricos, lo que permite que existan soluciones con discontinuidades entre elementos adyacentes \cite{Fichtner2011}.
+Es un método relativamente reciente, que funciona como un método de elemento finito donde las restricciones de continuidad entre elementos se substituyen por flujos numéricos, lo que permite que existan soluciones con discontinuidades entre elementos adyacentes \cite{Fichtner2011}.
 \subsection{Simulaciones sísmicas existentes}
 \subsubsection{SPECFEM}
 SPECFEM \cite{Peter_Forward_and_adjoint_2011} es una familia de simulaciones sísmicas que hacen uso del método finito estocástico espectral para realizar simulaciones de propagación de ondas sísmicas a distintas escalas. Está mayormente desarrollado en FORTRAN, con una versión en C++.
@@ -78,7 +79,7 @@ Las simulaciones que forman parte de esta familia son:
 SeisSol \cite{Kser2010} permite la simulación de la propagación de ondas sísmicas y de rupturas dinámicas utilizando un método de Galerkin discontinuo. El método de mallado que utiliza esta simulación le permite adaptarse a materiales altamente híbridos. En el artículo que presenta este software, se demuestra que el software logra escalar satisfactoriamente hasta los 1024 núcleos, con una eficiencia del 76\%. Se utilizó para realizar la simulación de ruptura dinámica más larga y grande en el 2017 con una simulación del terremoto del océano Índico del 2004 \cite{Uphoff2017}. El software está implementado en C++.
 
 \subsubsection{ExaHyPE}
-  Esta simulación también se basa en el método de Galerkin discontinuo \cite{Reinarz2020}. Permite realizar un mallado adaptativo. Se puede utilizar para modelar todo tipo de ecuaciones diferenciales parciales hiperbólicas, no únicamente aquellas relacionadas a la sismología. Se realizaron pruebas de escalamiento, hasta llegar a los 28 nodos con un total de 784 núcleos. El software está escrito en C++ con porciones en FORTRAN y Python.
+Esta simulación también se basa en el método de Galerkin discontinuo \cite{Reinarz2020}. Permite realizar un mallado adaptativo. Se puede utilizar para modelar todo tipo de ecuaciones diferenciales parciales hiperbólicas, no únicamente aquellas relacionadas a la sismología. Se realizaron pruebas de escalamiento, hasta llegar a los 28 nodos con un total de 784 núcleos. El software está escrito en C++ con porciones en FORTRAN y Python.
 \subsubsection{AWP-ODC}
 AWP-ODC hace uso de un método de diferencias finitas \cite{Cui2010}. Permite realizar simulaciones de propagación de ondas sísmicas, así como el modelado de rupturas dinámicas en fallas verticales. Este software intenta resolver el problema de la E/S utilizando MPI-IO para realizar entrada y salida paralela.
 
@@ -88,9 +89,15 @@ AWP-ODC hace uso de un método de diferencias finitas \cite{Cui2010}. Permite re
 \colorbox{yellow}{TODO: mencionar y justificar la simulación seleccionada}
 \section{Análisis in-situ}
 En este trabajo, se utilizarán los términos ``análisis in-situ'' y ``visualización in-situ'' para referirse al análisis y simulación que se realiza de forma simultánea a la ejecución de la simulación que genera los datos, independientemente de si este análisis se realiza en el mismo hardware que la simulación o si este se transporta hacia un hardware dedicado a realizar estas tareas \cite{childs_terminology_2020}.
-\colorbox{yellow}{TODO: diagrama que explique simulación in-situ}
+
+\colorbox{yellow}{TODO: diagrama que explique simulación in-situ, in-transit, etc}
+\begin{figure}
+  \includegraphics[width=\textwidth]{insitusystems}
+  \label{fig:insitusystems}
+  \caption{Características utilizadas para clasificar las bibliotecas in-situ. Imagen tomada de \cite{childs_terminology_2020} \colorbox{yellow}{TODO: Hacer mi propia versión}}
+\end{figure}
 \subsection{Caracterización de bibliotecas de análisis in-situ}
-Se han identificado seis características con las que se caracterizan las bibliotecas de visualización y análisis in-situ \cite{childs_terminology_2020}.
+En la figura \ref{fig:insitusystems} se pueden observar los seis ejes con los que es posible realizar una caracterización las bibliotecas de visualización y análisis in-situ \cite{childs_terminology_2020}.
 \begin{enumerate}
   \item Tipo de integración con la simulación.
   \item Proximidad del código de análisis y visualización de la simulación.
@@ -99,15 +106,16 @@ Se han identificado seis características con las que se caracterizan las biblio
   \item Controles que se tienen sobre la simulación mientras se ejecuta.
   \item Tipo de salida.
 \end{enumerate}
+\colorbox{yellow}{TODO: Explicar cada eje}
 \subsection{Bibliotecas de análisis y visualización in-situ}
 \subsubsection{ADIOS2}
-  Esta biblioteca \cite{Godoy2020} le permite al usuario realizar transferencias de datos entre unidades de ejecución de forma transparente, ya sea que es entre dos nodos de una supercomputadora conectadas por alguna red de interconexión como Infiniband, entre computadoras regulares conectadas por internet e incluso entre computadoras regulares y supercomputadoras.
-  Tiene tres APIs diseñadas con distintos niveles de abstracción.
-  \begin{itemize}
-    \item El API de alto nivel está pensado para flujos de trabajo de análisis de datos. Tiene bindings para C++, Python y Matlab.
-    \item El API de bajo nivel está diseñado para ser integrado en simulaciones de HPC. Está basado en MPI para reducir los costos de comunicación de red.
-    \item El API privado permite desarrollar ADIOS con prácticas modernas de ingeniería de software.
-  \end{itemize}
+Esta biblioteca \cite{Godoy2020} le permite al usuario realizar transferencias de datos entre unidades de ejecución de forma transparente, ya sea que es entre dos nodos de una supercomputadora conectadas por alguna red de interconexión como Infiniband, entre computadoras regulares conectadas por internet e incluso entre computadoras regulares y supercomputadoras.
+Tiene tres APIs diseñadas con distintos niveles de abstracción.
+\begin{itemize}
+  \item El API de alto nivel está pensado para flujos de trabajo de análisis de datos. Tiene bindings para C++, Python y Matlab.
+  \item El API de bajo nivel está diseñado para ser integrado en simulaciones de HPC. Está basado en MPI para reducir los costos de comunicación de red.
+  \item El API privado permite desarrollar ADIOS con prácticas modernas de ingeniería de software.
+\end{itemize}
 \subsubsection{Catalyst}
 Es una herramienta desarrollada por Kitware como un acompañante al software Paraview. Permite instrumentar el código mediante la implementación de un estándar llamado Conduit \cite{Ayachit2021}.
 
