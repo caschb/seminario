@@ -90,14 +90,25 @@ AWP-ODC hace uso de un método de diferencias finitas \cite{Cui2010}. Permite re
 \section{Análisis in-situ}
 En este trabajo, se utilizarán los términos ``análisis in-situ'' y ``visualización in-situ'' para referirse al análisis y simulación que se realiza de forma simultánea a la ejecución de la simulación que genera los datos, independientemente de si este análisis se realiza en el mismo hardware que la simulación o si este se transporta hacia un hardware dedicado a realizar estas tareas \cite{childs_terminology_2020}.
 
+\ref{tab:seismic_simulations}
+\begin{table}
+    \centering
+    \begin{tabular}{|c|c|}
+         &  \\
+         & 
+    \end{tabular}
+    \caption{Resumen de simulaciones sísmicas}
+    \label{tab:seismic_simulations}
+\end{table}
+
 \colorbox{yellow}{TODO: diagrama que explique simulación in-situ, in-transit, etc}
 \begin{figure}
   \includegraphics[width=\textwidth]{insitusystems}
   \label{fig:insitusystems}
-  \caption{Características utilizadas para clasificar las bibliotecas in-situ. Imagen tomada de \cite{childs_terminology_2020} \colorbox{yellow}{TODO: Hacer mi propia versión}}
+  \caption{Características utilizadas para clasificar las bibliotecas in-situ.}
 \end{figure}
 \subsection{Caracterización de bibliotecas de análisis in-situ}
-En la figura \ref{fig:insitusystems} se pueden observar los seis ejes con los que es posible realizar una caracterización las bibliotecas de visualización y análisis in-situ \cite{childs_terminology_2020}.
+En la figura \ref{fig:insitusystems}, tomada de \cite{childs_terminology_2020} se pueden observar los seis ejes con los que es posible realizar una caracterización las bibliotecas de visualización y análisis in-situ.
 \begin{enumerate}
   \item Tipo de integración con la simulación.
   \item Proximidad del código de análisis y visualización de la simulación.
@@ -118,8 +129,19 @@ Tiene tres APIs diseñadas con distintos niveles de abstracción.
 \end{itemize}
 \subsubsection{Catalyst}
 Es una herramienta desarrollada por Kitware como un acompañante al software Paraview. Permite instrumentar el código mediante la implementación de un estándar llamado Conduit \cite{Ayachit2021}.
+\subsubsection{ParaView}
 
+\subsubsection{VisIT}
 
-\colorbox{yellow}{TODO: Hablar específicamente de conduit, ParaView y VisIT}
+\subsubsection{Conduit}
 
-\colorbox{yellow}{TODO: Relacionar las bibliotecas con la caracterización}
+\ref{tab:insitu}
+\begin{table}[]
+    \centering
+    \begin{tabular}{c|c}
+         &  \\
+         & 
+    \end{tabular}
+    \caption{Resumen de bibliotecas de in-situ}
+    \label{tab:insitu}
+\end{table}
