@@ -14,9 +14,10 @@
 \usepackage[spanish]{babel}
 \usepackage{hyperref}
 \hypersetup{
-  pdftitle={Modificación de una simulación sísmica numérica para que haga uso de bibliotecas de análisis y visualización in-situ},
+  pdftitle={Uso de bibliotecas de análisis y visualización
+in-situ en una simulación sísmica numérica},
   pdfauthor={Christian Asch},
-  colorlinks=false,
+  colorlinks=true,
   breaklinks=true,
 }
 \usepackage[nameinlink, noabbrev, spanish]{cleveref}
@@ -28,12 +29,26 @@
 \graphicspath{{./images/}}
 \addbibresource{refs.bib}
 
+\newbox\namebox
+\newdimen\signboxdim
+
+\def\signature#1{%
+    \setbox\namebox=\hbox{#1}
+    \signboxdim=\dimexpr(\wd\namebox+1cm)
+    \parbox[t]{\signboxdim}{%
+        \centering
+%           \mbox{}\leaders\hbox to .4em{\hss.\hss}\hskip\nameboxdim\mbox{}\\   % for dots
+            \hrulefill\\    % for a line
+            #1
+        \par}%
+    }
+
 \begin{document}
 
 \input{titlepage}
+\input{comitee}
 
 \pagenumbering{Roman}
-\addchap{Resumen}
 \listoftables
 \listoffigures
 \tableofcontents
